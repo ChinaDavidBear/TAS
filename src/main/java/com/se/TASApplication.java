@@ -8,12 +8,12 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 @ServletComponentScan
-public class Application extends SpringBootServletInitializer {
+public class TASApplication extends SpringBootServletInitializer {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(TASApplication.class, args);
     }
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(Application.class);
+        return builder.sources(TASApplication.class);
     }
 }
