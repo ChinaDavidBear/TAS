@@ -67,7 +67,7 @@ public class FileDAO {
                 @Override
                 public String extractData(ResultSet resultSet) throws SQLException, DataAccessException {
                     if (resultSet.next()) {
-                        return resultSet.getString(SqlService.FILE_NAME);
+                        return resultSet.getString(SqlService.FILE_LOCATION);
                     }
 
                     return null;

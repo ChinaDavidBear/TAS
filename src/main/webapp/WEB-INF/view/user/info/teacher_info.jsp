@@ -63,15 +63,15 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="col s4">
-                                            <div class="row">
-                                                <div class="card z-depth-2">
-                                                    <div class="card-image">
-                                                        <img src="${user.imageLocation}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <%--<div class="col s4">--%>
+                                            <%--<div class="row">--%>
+                                                <%--<div class="card z-depth-2">--%>
+                                                    <%--<div class="card-image">--%>
+                                                        <%--<img src="${user.imageLocation}">--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
                                     </div>
                                 </div>
                             </div>

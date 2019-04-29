@@ -44,8 +44,7 @@ public class AdminDAO {
             ") VALUES(?,?)";
     private final String ADD_RELATION2_SQL = "INSERT INTO teach(" + SqlService.TEACH_TEACHER_ID + "," + SqlService.TEACH_COURSE_ID +
             ") VALUES(?,?)";
-    private final String GET_COURSE_ID_SQL = "SELECT * FROM course WHERE " + SqlService.COURSE_CODE + " = ? AND " + SqlService.COURSE_SEMESTER
-            + " = ? AND " + SqlService.COURSE_TIME + " = ? AND " + SqlService.COURSE_PLACE + " = ?";
+    private final String GET_COURSE_ID_SQL = "SELECT * FROM course WHERE " + SqlService.COURSE_CODE + " = ? ";
     private final String REMOVE_RELATION1_SQL = "DELETE FROM take WHERE " + SqlService.TAKE_STUDENT_ID + " = ? AND " + SqlService.TAKE_COURSE_ID + " = ?";
     private final String REMOVE_RELATION2_SQL = "DELETE FROM teach WHERE " + SqlService.TEACH_TEACHER_ID + " = ? AND " + SqlService.TEACH_COURSE_ID + " = ?";
 
@@ -186,7 +185,7 @@ public class AdminDAO {
     }
 
     public int getCourseId(String code, String semester, String time, String place) {
-        return jdbcTemplate.query(GET_COURSE_ID_SQL, new Object[]{code, semester, time, place}, new ResultSetExtractor<Integer>() {
+        return jdbcTemplate.query(GET_COURSE_ID_SQL, new Object[]{code}, new ResultSetExtractor<Integer>() {
             @Override
             public Integer extractData(ResultSet resultSet) throws SQLException, DataAccessException {
                 if (resultSet.next()) {

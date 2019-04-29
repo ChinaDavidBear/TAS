@@ -55,7 +55,7 @@ public class AttachmentService extends FileService{
     }
 
     private String getDirPath() {
-        return com.se.global.domain.File.ROOT_PATH + File.separator + "homework" + File.separator;
+        return com.se.global.domain.File.ROOT_PATH;
     }
 
     public boolean remove(HttpSession session, int fileId) {

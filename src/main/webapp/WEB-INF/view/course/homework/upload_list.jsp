@@ -27,7 +27,7 @@
 
                                                 <div class="col s8">
                                                     <form  id="homeworkForm" name="homeworkform" method="post"
-                                                           action="/course/${course_id}/homework/${homework_id}/mark" onsubmit="return validateHomework()">
+                                                           action="/course/${course_id}/homework/${homework_id}/mark" >
 
 
                                                         <div>

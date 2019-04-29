@@ -20,7 +20,7 @@
                             <div class="section">
                                 <div class="row">
                                     <div class="col s2 m1 l1">
-                                        <img class="materialboxed" width="100%" height="50" src="${comment.user.imageLocation}">
+                                        <%--<img class="materialboxed" width="100%" height="50" src="${comment.user.imageLocation}">--%>
                                         <p>${comment.user.name}</p>
                                     </div>
                                     <div class="col s9 m10 l10">

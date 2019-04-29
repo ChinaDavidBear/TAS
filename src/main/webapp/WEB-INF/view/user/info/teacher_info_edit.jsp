@@ -123,29 +123,29 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col s4">
-                                                <div class="row">
-                                                    <div class="card z-depth-2">
-                                                        <div class="card-image">
-                                                            <img src="${user.imageLocation}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                    <div class="col s2"></div>
-                                                    <div class="file-field input-field">
-                                                        <div class="btn">
-                                                            <span>Upload</span>
-                                                            <input type="file" name="image">
-                                                        </div>
-                                                        <div class="file-path-wrapper">
-                                                            <div class="row">
-                                                                    <%--<input class="file-path validate" type="text" placeholder="">--%>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <%--<div class="col s4">--%>
+                                                <%--<div class="row">--%>
+                                                    <%--<div class="card z-depth-2">--%>
+                                                        <%--<div class="card-image">--%>
+                                                            <%--<img src="${user.imageLocation}">--%>
+                                                        <%--</div>--%>
+                                                    <%--</div>--%>
+                                                    <%--<div class="row">--%>
+                                                    <%--<div class="col s2"></div>--%>
+                                                    <%--<div class="file-field input-field">--%>
+                                                        <%--<div class="btn">--%>
+                                                            <%--<span>Upload</span>--%>
+                                                            <%--<input type="file" name="image">--%>
+                                                        <%--</div>--%>
+                                                        <%--<div class="file-path-wrapper">--%>
+                                                            <%--<div class="row">--%>
+                                                                    <%--&lt;%&ndash;<input class="file-path validate" type="text" placeholder="">&ndash;%&gt;--%>
+                                                            <%--</div>--%>
+                                                        <%--</div>--%>
+                                                    <%--</div>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
                                         </form>
                                     </div>
                                 </div>

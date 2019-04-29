@@ -17,7 +17,7 @@
 <h4>${error}</h4>
 <c:forEach var="comment" items="${comments}" varStatus="status">
     <div>
-        <img class="img-circle" src="${comment.user.imageLocation}" height="42" width="42"/>
+        <%--<img class="img-circle" src="${comment.user.imageLocation}" height="42" width="42"/>--%>
         <h4>${comment.user.name}</h4>
         <p>${comment.content}</p>
         <h6>${comment.date}</h6>

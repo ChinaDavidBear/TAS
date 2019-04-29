@@ -55,7 +55,7 @@ public class UploadHomeworkService extends FileService {
             UploadHomework uploadHomework = new UploadHomework();
             uploadHomework.setHomework_id(homeworkId);
             uploadHomework.setName(file.getOriginalFilename());
-            uploadHomework.setLocation(getDirPath(courseId).substring(File.ROOT_PATH.length()));
+            uploadHomework.setLocation(getDirPath(courseId).substring(File.ROOT_PATH.length())+file.getOriginalFilename());
             uploadHomework.setSize(file.getSize());
             uploadHomework.setDate(new Date());
             uploadHomework.setCourseId(courseId);
@@ -106,7 +106,7 @@ public class UploadHomeworkService extends FileService {
         ArrayList<UploadHomeworkList> uploadHomeworkLists = new ArrayList<UploadHomeworkList>();
         for (UploadHomework uploadHomework: uploadHomeworks) {
             UploadHomeworkList uploadHomeworkList = new UploadHomeworkList();
-            uploadHomeworkList.setUploadFileId(uploadHomework.getId());
+            uploadHomeworkList.setUploadId(uploadHomework.getId());
             uploadHomeworkList.setStudentId(uploadHomework.getStudent_id());
             haveAddedStudentId.add(uploadHomework.getStudent_id());
             uploadHomeworkList.setStudentName(userDAO.getUserName(uploadHomework.getStudent_id()));

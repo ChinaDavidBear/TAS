@@ -9,21 +9,21 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="/index" class="brand-logo">TAS</a>
-                    <div class="header-search-wrapper hide-on-med-and-down sideNav-lock">
-                        <i class="material-icons">search</i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore">
-                    </div>
+                    <%--<div class="header-search-wrapper hide-on-med-and-down sideNav-lock">--%>
+                        <%--<i class="material-icons">search</i>--%>
+                        <%--<input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore">--%>
+                    <%--</div>--%>
                     <ul class="right hide-on-med-and-down">
-                        <li>
-                            <a href="/notice" class="waves-effect waves-block waves-light" data-activates="notifications-dropdown">
-                                <i class="material-icons">
-                                    notifications_none
-                                    <small class="notification-badge">
-                                            ${noticeTotalNum}
-                                    </small>
-                                </i>
-                            </a>
-                        </li>
+                        <%--<li>--%>
+                            <%--<a href="/notice" class="waves-effect waves-block waves-light" data-activates="notifications-dropdown">--%>
+                                <%--<i class="material-icons">--%>
+                                    <%--notifications_none--%>
+                                    <%--<small class="notification-badge">--%>
+                                            <%--${noticeTotalNum}--%>
+                                    <%--</small>--%>
+                                <%--</i>--%>
+                            <%--</a>--%>
+                        <%--</li>--%>
                         <li>
                             <a href="/user/info">
                                 <i class="material-icons">

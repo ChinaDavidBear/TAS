@@ -110,6 +110,6 @@ public class MaterialService extends FileService {
 
     //获取目录绝对路径(不包括文件名)
     private String getDirPath(int courseId) {
-        return com.se.global.domain.File.ROOT_PATH + File.separator +"material" + File.separator + courseId + File.separator;
+        return com.se.global.domain.File.ROOT_PATH;
     }
 }

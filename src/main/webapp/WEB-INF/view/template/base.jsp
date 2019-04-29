@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>浙江大学教学辅助系统</title>
+    <title>ITTAS大学教学辅助系统</title>
 
     <link rel="stylesheet" type="text/css" href="/css/user/index/user_index.css">
 

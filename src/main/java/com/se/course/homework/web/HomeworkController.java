@@ -175,7 +175,7 @@ public class HomeworkController {
                                      Model model, @RequestParam("upload_id") int upload_id, @RequestParam("score") int score) {
         User user = SessionService.getUser(session);
         if (user.getType() == 2) {
-            uploadHomeworkService.markScore(upload_id, score);
+            uploadHomeworkService.markScore( score,upload_id);
             return "redirect:/course/" + courseId + "/homework/" + homework_id + "/upload_list";
         } else
             return "error/404";

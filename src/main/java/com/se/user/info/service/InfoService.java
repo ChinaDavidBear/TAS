@@ -38,8 +38,8 @@ public class InfoService {
      */
     public boolean update(HttpSession session, EditableInfo editableInfo) {
         User user = SessionService.getUser(session);
-        String imageLocation = storeImage(user, editableInfo.getImage());
-        editableInfo.setImageLocation(imageLocation);
+//        String imageLocation = storeImage(user, editableInfo.getImage());
+//        editableInfo.setImageLocation(imageLocation);
 
         try {
             infoDAO.update(user, editableInfo);
@@ -50,22 +50,26 @@ public class InfoService {
         }
     }
 
-    private String storeImage(User user, MultipartFile image) {
-        String imageLocation = "/image/" + user.getId() + "-" + EncryptService.getFileMD5(image) + ".jpg";
-        String rootPath = com.se.global.domain.File.ROOT_PATH;
-        String realImageLocation = rootPath + imageLocation;
-        File file = new File(realImageLocation);
-
-        if (image == null || image.isEmpty())
-            return user.getImageLocation();
-
-        try {
-            image.transferTo(file);
-            return imageLocation;
-        } catch (IOException exception) {
-            logger.error("storeImage fail! " + exception.getCause());
-            return user.getImageLocation();
-        }
-
-    }
+//    private String storeImage(User user, MultipartFile image) {
+//        String imageLocation = "image"+File.separator + user.getId() + "-" + EncryptService.getFileMD5(image) + ".jpg";
+//        String rootPath = com.se.global.domain.File.ROOT_PATH;
+//        String realImageLocation = rootPath + imageLocation;
+//        File file = new File(realImageLocation);
+//
+//        if (image == null || image.isEmpty())
+//            return user.getImageLocation();
+//
+//        try {
+//            File headImageDir = new File(rootPath+"image"+File.separator);
+//            if(!headImageDir.exists()){
+//                headImageDir.mkdirs();
+//            }
+//            image.transferTo(file);
+//            return imageLocation;
+//        } catch (IOException exception) {
+//            logger.error("storeImage fail! " + exception.getCause());
+//            return user.getImageLocation();
+//        }
+//
+//    }
 }
