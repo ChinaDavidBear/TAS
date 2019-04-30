@@ -6,6 +6,15 @@ public class UploadHomeworkList {
     private String studentName;
     private String uploadFileName;
     private int uploadFileId;
+    private int result;
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
 
     public int getUploadId() {
         return uploadId;

@@ -25,30 +25,30 @@
                             <c:if test="${uploadHomework.get_score != -1}">
                                 <p>当前分数：${uploadHomework.get_score}</p>
                             </c:if>
-                            作业要求:
+                            作业要求:<br/>
                             <a href="/course/homework/download?file_id=${homework.attachments}">
                                 <img style="height: 300px;"  src="/course/homework/download?file_id=${homework.attachments}"> </img>
                             </a>
                             <c:if test="${not empty homework.result}">
                             <br/>
-                            作业答案:
+                            作业答案:<br/>
                             <a href="/course/homework/download?file_id=${homework.result}">
                                 <img style="height: 300px;"  src="/course/homework/download?file_id=${homework.result}"> </img>
                             </a>
                             </c:if>
                             </div>
-                            <br>
+                            <br/>
                         </div>
                         <div class="card-action">
                             <c:if test="${not empty uploadHomework.upload_homework_file}">
-                                作业提交:
+                                作业提交:<br/>
                                 <a href="/course/homework/download?file_id=${uploadHomework.upload_homework_file}">
                                     <img style="height: 300px;" src="/course/homework/download?file_id=${uploadHomework.upload_homework_file}"> </img>
                                 </a>
                             </c:if>
                             <c:if test="${uploadHomework.result != 0}">
                                 <br/>
-                                作业修改:
+                                作业修改:<br/>
                                 <a href="/course/homework/download?file_id=${uploadHomework.result}">
                                     <img style="height: 300px;"  src="/course/homework/download?file_id=${uploadHomework.result}"> </img>
                                 </a>

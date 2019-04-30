@@ -24,39 +24,23 @@
                                                     ${uploadHomework.studentId},${uploadHomework.studentName}
                                             </div>
                                             <c:if test="${uploadHomework.uploadFileId != -1}">
-
-                                                <div class="col s8">
-                                                    <form  id="homeworkForm" name="homeworkform" method="post"
-                                                           action="/course/${course_id}/homework/${homework_id}/mark" >
-
-
-                                                        <div>
-                                                            <input type="hidden" value=${uploadHomework.uploadId} id="disabled" name="upload_id" type="number" >
-                                                        </div>
-
-                                                        <div class="input-field col s4">
-                                                            <i class="material-icons prefix">grade</i>
-                                                            <input id="hw_score" name="score" type="number" class="validate">
-                                                            <label for="hw_score">作业分数</label>
-                                                        </div>
-                                                        <div class="col s4">
-                                                            <button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan box-shadow " type="submit">
-                                                                <i class="material-icons right">send</i>
-                                                                提交
-                                                            </button>
-                                                        </div>
-
-
-
-                                                    </form>
-                                                </div>
-                                                <div class="col s2">
-                                                    <a href="/course/homework/download?file_id=${uploadHomework.uploadFileId}" class="secondary-content">${uploadHomework.uploadFileName}</a>
+                                                <div class="col s2" style="width: 30%">
+                                                    作业提交：<br/>
+                                                    <a href="/course/homework/download?file_id=${uploadHomework.uploadFileId}" class="secondary-content">
+                                                        <img style="height: 200px;"  src="/course/homework/download?file_id=${uploadHomework.uploadFileId}"> </img>
+                                                    </a>
                                                 </div>
                                             </c:if>
-
+                                            <c:if test="${uploadHomework.result != -1}">
+                                                <div class="col s2" style="width: 30%">
+                                                    作业修改：<br/>
+                                                    <a href="/course/homework/download?file_id=${uploadHomework.result}" class="secondary-content">
+                                                        <img style="height: 200px;"  src="/course/homework/download?file_id=${uploadHomework.result}"> </img>
+                                                    </a>
+                                                </div>
+                                            </c:if>
                                             <c:if test="${uploadHomework.uploadFileId == -1}">
-                                                <div class="secondary-content">
+                                                <div class="secondary-content" style="width: 30%">
                                                     <span class="red-text text-read">还未提交</span>
                                                 </div>
                                             </c:if>

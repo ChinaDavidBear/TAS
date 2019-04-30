@@ -138,6 +138,7 @@ public class UploadHomeworkService extends FileService {
             uploadHomeworkList.setStudentName(userDAO.getUserName(uploadHomework.getStudent_id()));
             uploadHomeworkList.setUploadFileName(uploadHomework.getName());
             uploadHomeworkList.setUploadFileId(uploadHomework.getUpload_homework_file());
+            uploadHomeworkList.setResult(uploadHomework.getResult());
             uploadHomeworkLists.add(uploadHomeworkList);
         }
         try {
