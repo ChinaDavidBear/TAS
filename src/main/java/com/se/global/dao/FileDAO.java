@@ -25,7 +25,7 @@ public class FileDAO {
     private final String STORE_SQL = "INSERT INTO file(" + SqlService.FILE_NAME + "," + SqlService.FILE_LOCATION + "," +
             SqlService.FILE_SIZE + "," + SqlService.FILE_DATE + "," + SqlService.FILE_COURSE_ID + "," + SqlService.FILE_USER_ID + ") VALUES(?,?,?,?,?,?)";
     private final String REMOVE_SQL = "DELETE FROM file WHERE " + SqlService.FILE_ID + " = ?";
-    private final String GET_MAX_FILE_ID_SQL = "SELECT MAX(" + SqlService.FILE_ID + ") AS " + SqlService.FILE_ID + " FROM file";
+    public  final String GET_MAX_FILE_ID_SQL = "SELECT MAX(" + SqlService.FILE_ID + ") AS " + SqlService.FILE_ID + " FROM file";
     private final String GET_FILE_NAME_SQL = "SELECT * FROM file WHERE " + SqlService.FILE_ID + " = ?";
     private final String IS_FILE_EXIST_SQL = "SELECT * FROM file WHERE " + SqlService.FILE_ID + " = ? and " + SqlService.FILE_USER_ID + " = ?";
     private final String GET_FILE_ID_SQL = "SELECT * FROM file WHERE " + SqlService.FILE_LOCATION + " = ?";

@@ -15,6 +15,8 @@ public class Comment {
     private User user;
     private Date date;
     private String content;
+    private int status;
+    private String ask;
 
     public int getCommentId() {
         return commentId;
@@ -54,5 +56,21 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getAsk() {
+        return ask;
+    }
+
+    public void setAsk(String ask) {
+        this.ask = ask;
     }
 }

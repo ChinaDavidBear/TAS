@@ -95,4 +95,14 @@ public class CommentController {
 
         return "redirect:/course/" + courseId + "/comment";
     }
+
+    @RequestMapping("/course/{courseId}/comment/ask")
+    public String ask(HttpSession session, @PathVariable int courseId,@RequestParam("comment_id") int commentId, @RequestParam("ask") String ask, Model model) {
+        if (!commentService.ask(session, commentId, ask)) {
+            ModelService.setError(model, "回复失败!");
+        }
+
+        return "redirect:/course/" + courseId +"/comment";
+    }
+
 }

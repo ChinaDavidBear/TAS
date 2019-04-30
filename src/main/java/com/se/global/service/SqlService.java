@@ -94,6 +94,7 @@ public class SqlService {
     public static final String HOMEWORK_DDL_DATE = "ddl_date";
     public static final String HOMEWORK_DATE = "create_date";
     public static final String HOMEWORK_ATTACHMENT = "attachment";
+    public static final String HOMEWORK_RESULT = "result";
     public static final String HOMEWORK_SCORE = "score";
     public static final String HOMEWORK_ID = "id";
     public static final String HOMEWORK_COURSE_ID = "course_id";

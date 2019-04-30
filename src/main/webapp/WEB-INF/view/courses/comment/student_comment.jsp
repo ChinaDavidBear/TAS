@@ -29,6 +29,15 @@
                                             ${comment.content}
                                     </div>
                                 </div>
+                                <c:if test="${comment.status == 1}">
+                                <div class="row">
+                                        <div class="col s9 m10 l10">
+                                            <p>回复内容</p>
+                                            <br/>
+                                                ${comment.ask}
+                                        </div>
+                                </div>
+                                </c:if>
                             </div>
                             <div class="divider"></div>
                         </c:forEach>

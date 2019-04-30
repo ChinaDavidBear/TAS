@@ -72,6 +72,31 @@ public class UploadHomeworkService extends FileService {
         }
     }
 
+    public boolean uploadresultHomework(MultipartFile file, int uploadhomeworkid ,int homework_id, int courseId, String userId) {
+
+        if (isFileExist(getDirPath(courseId) + file.getOriginalFilename())) {
+            int fileId = uploadHomeworkDAO.getFileId(getDirPath(courseId).substring(File.ROOT_PATH.length()) + file.getOriginalFilename());
+            remove(userId, fileId, courseId);
+        }
+        if (store(file, getDirPath(courseId))) {
+            UploadHomework uploadHomework =  uploadHomeworkDAO.getUploadHomework(uploadhomeworkid);
+            uploadHomework.setHomework_id(homework_id);
+            uploadHomework.setName(file.getOriginalFilename());
+            uploadHomework.setLocation(getDirPath(courseId).substring(File.ROOT_PATH.length())+file.getOriginalFilename());
+            uploadHomework.setSize(file.getSize());
+            uploadHomework.setDate(new Date());
+            uploadHomework.setCourseId(courseId);
+            uploadHomework.setUserId(userId);
+            try {
+                uploadHomeworkDAO.uploadresult(uploadHomework, homework_id);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     public boolean remove(String userId, int fileId, int courseId) {
         return remove(fileId, userId, getDirPath(courseId), uploadHomeworkDAO);
     }
@@ -84,7 +109,8 @@ public class UploadHomeworkService extends FileService {
         }
     }
 
-    private String getDirPath(int course_id) {
+
+  private String getDirPath(int course_id) {
         return File.ROOT_PATH + java.io.File.separator + "upload_homework" + java.io.File.separator + course_id + java.io.File.separator;
     }
 

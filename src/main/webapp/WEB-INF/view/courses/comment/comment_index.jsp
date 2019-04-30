@@ -23,6 +23,7 @@
         <h6>${comment.date}</h6>
         <c:if test="${user.type == 2}">
             <a href="/course/${courseId}/comment/remove?comment_index=${status.index}">删除</a>
+            <a href="/course/${courseId}/comment/ask?comment_index=${status.index}">回复</a>
         </c:if>
     </div>
 </c:forEach>

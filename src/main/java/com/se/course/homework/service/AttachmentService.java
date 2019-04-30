@@ -37,7 +37,7 @@ public class AttachmentService extends FileService{
             Attachment attachment = new Attachment();
             attachment.setHomework_id(homework_id);
             attachment.setName(file.getOriginalFilename());
-            attachment.setLocation(getDirPath().substring(com.se.global.domain.File.ROOT_PATH.length()));
+            attachment.setLocation(getDirPath().substring(com.se.global.domain.File.ROOT_PATH.length())+file.getOriginalFilename());
             attachment.setSize(file.getSize());
             attachment.setDate(new Date());
             attachment.setCourseId(course_id);
@@ -54,6 +54,27 @@ public class AttachmentService extends FileService{
         }
     }
 
+    public int uploadreslut(HttpSession session, MultipartFile file, int homework_id, int course_id) {
+        User user = SessionService.getUser(session);
+        if (isFileExist(getDirPath() + file.getOriginalFilename())) {
+            int fileId = attachmentDAO.getFileId(getDirPath().substring(com.se.global.domain.File.ROOT_PATH.length()) + file.getOriginalFilename());
+            remove(session, fileId);
+        }
+        if (store(file, getDirPath())) {
+            Attachment attachment = new Attachment();
+            attachment.setHomework_id(homework_id);
+            attachment.setName(file.getOriginalFilename());
+            attachment.setLocation(getDirPath().substring(com.se.global.domain.File.ROOT_PATH.length())+file.getOriginalFilename());
+            attachment.setSize(file.getSize());
+            attachment.setDate(new Date());
+            attachment.setCourseId(course_id);
+            attachment.setUserId(user.getId());
+            int fileid = attachmentDAO.uploadreslut(attachment);
+           return fileid;
+        } else {
+            return 0;
+        }
+    }
     private String getDirPath() {
         return com.se.global.domain.File.ROOT_PATH;
     }

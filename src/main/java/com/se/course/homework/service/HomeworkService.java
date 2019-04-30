@@ -69,17 +69,11 @@ public class HomeworkService {
             MultipartFile file, int id, int courseId) {
         try {
             String attachments = "";
-            Attachment attachment = attachmentService.getHomeworkAttachment(id);
             if (file != null) {
-                if (attachment != null)
-                    attachmentService.remove(session, attachment.getFile_id());
-                attachmentService.upload(session, file, id, courseId);
-                attachment = attachmentService.getHomeworkAttachment(id);
-                attachments = String.valueOf(attachment.getFile_id());
+                int uploadreslut = attachmentService.uploadreslut(session, file, id, courseId);
+                homeworkDAO.updateHomework(title, ddl, score, content, uploadreslut+"", id);
             }
-            if (attachment != null)
-                attachments = String.valueOf(attachment.getFile_id());
-            homeworkDAO.updateHomework(title, ddl, score, content, attachments, id);
+
             String message = "作业：" + title + " 有更新！";
             noticeService.addNotice(session, courseId, message, NoticeService.HOMEWORK_NOTICE_INDEX);
             return true;

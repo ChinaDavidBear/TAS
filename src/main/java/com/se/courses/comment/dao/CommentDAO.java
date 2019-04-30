@@ -28,8 +28,9 @@ public class CommentDAO {
             ") VALUES(?,?,?,?,?)";
     private final String GET_COMMENT_LIST_SQL = "SELECT * FROM comment WHERE " + SqlService.COMMENT_COURSE_ID + " = ? " + " ORDER BY date ASC";
     private final String REMOVE_COMMENT_SQL = "DELETE FROM comment WHERE " + SqlService.COMMENT_ID + " = ?";
+    private final String ASK_COMMENT_SQL = " update comment set status=1,ask=? where " + SqlService.COMMENT_ID + " = ?";
 
-    @Autowired
+  @Autowired
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) { this.jdbcTemplate = jdbcTemplate; }
 
     @Autowired
@@ -67,7 +68,8 @@ public class CommentDAO {
                     comment.setContent(resultSet.getString(SqlService.COMMENT_CONTENT));
                     comment.setDate(resultSet.getDate(SqlService.COMMENT_DATE));
                     comment.setCourseId(courseId);
-
+                    comment.setAsk(resultSet.getString("ask"));
+                    comment.setStatus(resultSet.getInt("status"));
                     String id = resultSet.getString(SqlService.COMMENT_USER_ID);
                     int type = resultSet.getInt(SqlService.COMMENT_USER_TYPE);
                     comment.setUser(loginDAO.getUser(id, type));
@@ -89,4 +91,18 @@ public class CommentDAO {
     public void remove(int commentId) throws DataAccessException {
         jdbcTemplate.update(REMOVE_COMMENT_SQL, commentId);
     }
+
+  /**
+   * 回复
+   * @param commentId
+   * @param ask
+   */
+
+    public void ask(int commentId, String ask) {
+
+      Object[] args = new Object[] {ask, commentId};
+      jdbcTemplate.update(ASK_COMMENT_SQL, args);
+
+    }
+
 }

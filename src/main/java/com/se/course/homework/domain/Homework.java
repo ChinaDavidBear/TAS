@@ -12,6 +12,15 @@ public class Homework {
     private int score;
     private String attachments;
     private int course_id;
+    private String result;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public int getCourse_id() {
         return course_id;

@@ -90,4 +90,17 @@ public class CommentService {
             return false;
         }
     }
+
+    /**
+     * 回复留言
+     */
+    public boolean ask(HttpSession session, int commentId, String ask) {
+        try {
+            commentDAO.ask(commentId,ask);
+            return true;
+        } catch (Exception exception) {
+            logger.error("askComment fail! " + exception.getCause());
+            return false;
+        }
+    }
 }

@@ -85,6 +85,20 @@ public class HomeworkController {
         }
     }
 
+  @RequestMapping("/course/{courseId}/homework/{id}/result")
+  public String result(HttpSession session, Model model, @PathVariable int id, @PathVariable int courseId) {
+    Homework homework = homeworkService.getHomework(session, id, courseId);
+    ModelService.setNoticeTotalNum(model, session);
+    User user = SessionService.getUser(session);
+    if (homework != null && user.getType() == 2) {
+      model.addAttribute("homework", homework);
+      model.addAttribute("course_id", courseId);
+      return "redirect:/course/" + courseId + "/homework/list";
+    } else {
+      return "/error/404";
+    }
+  }
+
     @RequestMapping("/course/{courseId}/homework/{id}/delete")
     public String deleteHomework(HttpSession session, Model model, @PathVariable int courseId, @PathVariable int id) {
         homeworkService.deleteHomework(id);
@@ -155,6 +169,25 @@ public class HomeworkController {
         return "redirect:/course/" + courseId + "/homework/" + homework_id;
     }
 
+  /**
+   * 修改作业
+   * @param session
+   * @param courseId
+   * @param homework_id
+   * @param file
+   * @param redirectAttributes
+   * @return
+   */
+    @RequestMapping("/course/{courseId}/homework/{homework_id}/uploadresult")
+    public String uploadresult(HttpSession session, @PathVariable int courseId, @PathVariable int homework_id,
+                                 @RequestParam("file") MultipartFile file, @RequestParam("id") int id,RedirectAttributes redirectAttributes) {
+      String userId = SessionService.getUser(session).getId();
+      //必须有file
+      if (!uploadHomeworkService.uploadresultHomework(file, id,homework_id, courseId, userId)) {
+        redirectAttributes.addFlashAttribute("error", "上传失败");
+      }
+      return "redirect:/course/" + courseId + "/homework/" + homework_id;
+    }
     @RequestMapping("/course/{courseId}/homework/{homework_id}/upload_list")
     public String uploadHomeworkListPage(HttpSession session, @PathVariable int courseId, @PathVariable int homework_id,
                                          Model model) {

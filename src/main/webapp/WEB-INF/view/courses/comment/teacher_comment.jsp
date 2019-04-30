@@ -30,7 +30,8 @@
                                     </div>
                                 </div>
                                     <div class="row">
-                                        <div class="col s11" align="center">
+                                        <div class="col s13" align="left">
+
                                             <a class="waves-effect waves-light btn gradient-45deg-red-pink box-shadow"
                                                style="float:right;" href="/course/${courseId}/comment/remove?comment_id=${comment.commentId}">
                                                 <i class="material-icons right">
@@ -39,31 +40,41 @@
                                                 删除留言
                                             </a>
                                         </div>
+                                        <c:if test="${comment.status == 1}">
+                                            <div class="col s9 m10 l10">
+                                                <p>回复内容</p>
+                                                <br/>
+                                                    ${comment.ask}
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${comment.status == 0}">
+                                            <form class="row" name="commentform" method="post"
+                                                  action="/course/${courseId}/comment/ask?comment_id=${comment.commentId}" >
+                                                <div class="row">
+                                                    <div class="input-field col s12">
+                                                        <i class="material-icons prefix">mode_edit</i>
+                                                        <textarea id="icon_prefix2" class="materialize-textarea" name="ask"></textarea>
+                                                        <label for="icon_prefix2">回复内容</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col s12" align="center">
+                                                        <button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan box-shadow"
+                                                                name="action" style="float:right;" type="submit">
+                                                            <i class="material-icons right">send</i>
+                                                            回复留言
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </c:if>
                                     </div>
-                            </div>
+                                    </div>
+
                             <div class="divider"></div>
                         </c:forEach>
                     </div>
                 </div>
-                <form class="row" name="commentform" method="post"
-                      action="/course/${courseId}/comment/submit" onsubmit="return validateComment()">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <i class="material-icons prefix">mode_edit</i>
-                            <textarea id="icon_prefix2" class="materialize-textarea" name="content"></textarea>
-                            <label for="icon_prefix2">留言内容</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12" align="center">
-                            <button class="waves-effect waves-light btn gradient-45deg-light-blue-cyan box-shadow"
-                                    name="action" style="float:right;" type="submit">
-                                <i class="material-icons right">send</i>
-                                留言
-                            </button>
-                        </div>
-                    </div>
-                </form>
             </div>
             <div class="col s0 m1 l1"></div>
         </div>

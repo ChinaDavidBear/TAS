@@ -25,7 +25,7 @@ public class HomeworkDAO {
     private static final String GET_HOMEWORK_LIST_SQL = "select * from homework where " +
             SqlService.HOMEWORK_COURSE_ID + " = ? " + " order by " + SqlService.HOMEWORK_DATE+ " DESC";
     private static final String UPDATE_HOMEWORK_SQL = "update homework set " + SqlService.HOMEWORK_TITLE + " =?, " + SqlService.HOMEWORK_DDL_DATE +
-            " =?, " + SqlService.HOMEWORK_SCORE + " =?, " + SqlService.HOMEWORK_CONTENT + " =?, " + SqlService.HOMEWORK_ATTACHMENT + " =? " +
+            " =?, " + SqlService.HOMEWORK_SCORE + " =?, " + SqlService.HOMEWORK_CONTENT + " =?, " + SqlService.HOMEWORK_RESULT + " =? " +
             "where id = ?";
     private static final String GET_HOMEWORK_SQL = "select * from homework where id = ?";
     private static final String GET_MAX_ID_SQL = "select max(" + SqlService.HOMEWORK_ID + ") from homework";
@@ -64,6 +64,7 @@ public class HomeworkDAO {
                         homework.setCourse_id(course_id);
                         homework.setContent(rs.getString("content"));
                         homework.setAttachments(rs.getString("attachment"));
+                        homework.setResult(rs.getString("result"));
                     }
                 });
         if (homework.getId() > 0) {
@@ -111,7 +112,7 @@ public class HomeworkDAO {
     }
 
     public void updateHomeworkAttachment(int homework_id, String attachment) {
-        Object[] args = new Object[] {homework_id, attachment};
+        Object[] args = new Object[] {attachment,homework_id};
         jdbcTemplate.update(UPDATE_ATTACHMENT_SQL, args);
     }
 }

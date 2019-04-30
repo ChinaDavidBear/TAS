@@ -32,6 +32,31 @@ public class UploadHomeworkDAO extends FileDAO {
             "t1.upload_homework_file = t2.id WHERE t1." + SqlService.UPLOAD_HOMEWORK_HOMEWORK_ID + " = ?";
     private final String UPDATE_SCORE_SQL = "update upload_homework set " + SqlService.UPLOAD_HOMEWORK_GET_SCORE + " = ? " +
             "where " + SqlService.UPLOAD_HOMEWORK_ID + " = ?";
+    private final String GET_UPLOAD_HOMEWORK_SQLBY_ID  = "select * from upload_homework where id= ? ";
+
+    public UploadHomework getUploadHomework(int uploadhomeworkid) {
+
+        final UploadHomework uploadHomework = new UploadHomework();
+        Object[] args = new Object[] {uploadhomeworkid};
+        jdbcTemplate.query(GET_UPLOAD_HOMEWORK_SQLBY_ID, args, new RowCallbackHandler() {
+            @Override
+            public void processRow(ResultSet rs) throws SQLException {
+                setFile(rs, uploadHomework);
+                uploadHomework.setCourse_id(rs.getInt(SqlService.UPLOAD_HOMEWORK_COURSE_ID));
+                uploadHomework.setGet_score(rs.getInt(SqlService.UPLOAD_HOMEWORK_GET_SCORE));
+                uploadHomework.setHandle_date(rs.getDate(SqlService.UPLOAD_HOMEWORK_HANDLE_DATE));
+                uploadHomework.setHomework_id(rs.getInt(SqlService.UPLOAD_HOMEWORK_HOMEWORK_ID));
+                uploadHomework.setId(rs.getInt(SqlService.UPLOAD_HOMEWORK_ID));
+                uploadHomework.setStudent_id(rs.getString(SqlService.UPLOAD_HOMEWORK_STUDENT_ID));
+                uploadHomework.setUpload_homework_file(rs.getInt(SqlService.UPLOAD_HOMEWORK_FILE_ID));
+                uploadHomework.setResult(rs.getInt("result"));
+            }
+        });
+        if (uploadHomework.getCourse_id() == 0)
+            return null;
+        else
+            return uploadHomework;
+    }
 
     public void remove(int fileId, String userId) {
         if (isFileExist(fileId, userId)) {
@@ -76,6 +101,7 @@ public class UploadHomeworkDAO extends FileDAO {
                 uploadHomework.setId(rs.getInt(SqlService.UPLOAD_HOMEWORK_ID));
                 uploadHomework.setStudent_id(rs.getString(SqlService.UPLOAD_HOMEWORK_STUDENT_ID));
                 uploadHomework.setUpload_homework_file(rs.getInt(SqlService.UPLOAD_HOMEWORK_FILE_ID));
+                uploadHomework.setResult(rs.getInt("result"));
             }
         });
         if (uploadHomework.getCourse_id() == 0)
@@ -105,6 +131,7 @@ public class UploadHomeworkDAO extends FileDAO {
                     uploadHomework.setHandle_date(rs.getDate(SqlService.UPLOAD_HOMEWORK_HANDLE_DATE));
                     uploadHomework.setGet_score(rs.getInt(SqlService.UPLOAD_HOMEWORK_GET_SCORE));
                     uploadHomework.setCourse_id(rs.getInt(SqlService.UPLOAD_HOMEWORK_COURSE_ID));
+                    uploadHomework.setResult(rs.getInt("result"));
                     uploadHomeworks.add(uploadHomework);
                 }
                 return uploadHomeworks;
@@ -116,4 +143,11 @@ public class UploadHomeworkDAO extends FileDAO {
         Object[] args = new Object[] {score, id};
         jdbcTemplate.update(UPDATE_SCORE_SQL,args);
     }
+
+  public void uploadresult(UploadHomework uploadHomework, int homework_id) {
+        String uploadresult_sql = " update upload_homework set result=? where id=? ";
+      int fileId = store(uploadHomework);
+      Object[] args = new Object[] {fileId,uploadHomework.getId()};
+      jdbcTemplate.update(uploadresult_sql, args);
+  }
 }

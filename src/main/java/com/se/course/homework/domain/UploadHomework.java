@@ -12,6 +12,15 @@ public class UploadHomework extends File{
     private Date handle_date;
     private int course_id;
     private int upload_homework_file;
+    private int result;
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
 
     public UploadHomework() {}
 

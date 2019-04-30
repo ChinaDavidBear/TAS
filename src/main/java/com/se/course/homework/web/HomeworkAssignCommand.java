@@ -13,6 +13,15 @@ public class HomeworkAssignCommand implements Serializable {
     private int score;
     private String content;
     private MultipartFile file;
+    private String result;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public MultipartFile getFile() {
         return file;

@@ -7,45 +7,9 @@
     <script>
         function validateHomework()
         {
-            var hwtitle = document.forms["homeworkform"]["title"].value;
-            var hwddl = document.forms["homeworkform"]["ddl"].value;
-            var hwscore = document.forms["homeworkform"]["score"].value;
-            var hwcontent = document.forms["homeworkform"]["content"].value;
-
-            if ( hwtitle == null || hwtitle == ""){
-                Materialize.toast('请输入作业名称', 4000)
-                return false;
-            }
-            else if ( hwddl == null || hwddl == ""){
-                Materialize.toast('请选择作业截止日期', 4000)
-                return false;
-            }
-            else if ( hwscore == null || hwscore == ""){
-                Materialize.toast('请输入作业分数', 4000)
-                return false;
-            }
-            else if ( hwcontent == null || hwcontent == ""){
-                Materialize.toast('请输入作业内容', 4000)
-                return false;
-            }
-            else if( hwtitle.length > 30 ){
-                Materialize.toast('作业名称过长', 4000)
-                return false;
-            }
-            else if( hwtitle.length < 8 ){
-                Materialize.toast('作业名称过短', 4000)
-                return false;
-            }
-            else if( hwscore < 1 || hwscore > 100 ){
-                Materialize.toast('作业分数应在0-100分之间', 4000)
-                return false;
-            }
-            else if( hwcontent.length > 140 ){
-                Materialize.toast('作业内容过长', 4000)
-                return false;
-            }
-            else if( hwcontent.length < 10 ){
-                Materialize.toast('作业内容过短', 4000)
+            var file  = document.forms["homeworkform"]["file"].value;
+            if( null ==file || "" == file ){
+                Materialize.toast('请主传答案', 4000)
                 return false;
             }
             else
@@ -62,41 +26,41 @@
             <div class="col s0 m1 l1"></div>
             <div class="col s12 m10 l8">
                 <div class="section"></div>
-                <h4>更改作业</h4>
+                <h4>作业答案</h4>
                 <h5>Modify Homework</h5>
                 <div class="divider"></div>
                 <div class="section"></div>
                 <form id="homeworkForm" class="col s12" name="homeworkform"
                       action="/course/${course_id}/homework/${homework.id}/update"
                       method="post" enctype="multipart/form-data" onsubmit="return validateHomework()" >
-                    <div class="row">
+                    <div class="row" style="display: none;">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">subtitles</i>
-                            <input id="hw_title" name="title" type="text" value=${homework.title}
+                            <input id="hw_title" name="title" type="text"  readonly value=${homework.title}
                                     class="validate" data-length="30">
                             <label for="hw_title">作业名称</label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="display: none;">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">date_range</i>
-                            <input id="hw_ddl" name="ddl" type="text" value=${homework.ddl_date}
+                            <input id="hw_ddl" name="ddl" type="text" readonly value=${homework.ddl_date}
                                     class="datepicker">
                             <label for="hw_ddl">截止日期</label>
                         </div>
                         <div class="input-field col s6">
                             <i class="material-icons prefix">grade</i>
-                            <input id="hw_score" name="score" type="number" value=${homework.score}
+                            <input id="hw_score" name="score" type="number" readonly value=${homework.score}
                                     class="validate">
                             <label for="hw_score" data-error="请输入阿拉伯数字" data-success="输入格式正确">
                                 作业分数
                             </label>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="display: none;">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">content_copy</i>
-                            <textarea id="hw_content" name="content" class="materialize-textarea" data-length="140">
+                            <textarea id="hw_content" name="content" readonly class="materialize-textarea" data-length="140">
                                 ${homework.content}
                             </textarea>
                             <label for="hw_content">作业内容</label>
@@ -105,7 +69,7 @@
                     <div class="row">
                         <div class="file-field input-field col s12">
                             <div class="btn">
-                                <span>附件上传</span>
+                                <span>答案上传</span>
                                 <input type="file" name="file">
                             </div>
                             <div class="file-path-wrapper">

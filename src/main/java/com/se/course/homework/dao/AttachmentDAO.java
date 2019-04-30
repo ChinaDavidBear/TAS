@@ -33,6 +33,10 @@ public class AttachmentDAO extends FileDAO{
         Object[] args = new Object[] {fileId, homework_id};
         jdbcTemplate.update(UPLOAD_SQL, args);
     }
+    public int uploadreslut(Attachment attachment) {
+        int fileId = store(attachment);
+        return fileId;
+    }
 
     public Attachment getAttachments(int homework_id) {
         final Attachment attachment = new Attachment();
