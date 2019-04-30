@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -49,20 +47,24 @@ public class AdminService {
     }
 
     public String addStudent(MultipartFile file) {
-        String path = com.se.global.domain.File.ROOT_PATH + "/tmp/tmp_file";
+        String path = com.se.global.domain.File.ROOT_PATH + "tmp_file"+File.separator;
         Iterable<CSVRecord> records = null;
 
         try {
-            file.transferTo(new File(path));
-            Reader in = new FileReader(path);
-            records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
+            File path_file = new File(path);
+            if(!path_file.exists()){
+                path_file.mkdirs();
+            }
+            file.transferTo(new File(path+file.getOriginalFilename()));
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path + file.getOriginalFilename()),"GBK");
+            records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(inputStreamReader);
 
             for (CSVRecord record : records) {
                 String id = record.get("id");
                 String name = record.get("name");
                 String college = record.get("college");
                 String major = record.get("major");
-                String grade = record.get("grade");
+                    String grade = record.get("grade");
                 String classNumber = record.get("class_number");
 
                 adminDAO.addStudent(id, name, college, major, grade, classNumber);
@@ -110,13 +112,17 @@ public class AdminService {
     }
 
     public String addTeacher(MultipartFile file) {
-        String path = com.se.global.domain.File.ROOT_PATH + "/tmp/tmp_file";
+        String path = com.se.global.domain.File.ROOT_PATH + "tmp_file"+File.separator;
         Iterable<CSVRecord> records = null;
 
         try {
-            file.transferTo(new File(path));
-            Reader in = new FileReader(path);
-            records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
+            File path_file = new File(path);
+            if(!path_file.exists()){
+                path_file.mkdirs();
+            }
+            file.transferTo(new File(path+file.getOriginalFilename()));
+            InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(path + file.getOriginalFilename()),"GBK");
+            records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(inputStreamReader);
 
             for (CSVRecord record : records) {
                 String id = record.get("id");
